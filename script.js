@@ -1,3 +1,5 @@
+ // inspired by user yp1083
+ // with help from p5js reference + as always thecodingtrain
 
 let nakedFrog;
 let frogParty, frogChef, frogHowdy;
@@ -139,7 +141,6 @@ function draw() {
 
   tint (255, christmasTint);
   image(festive, 475, 250, 446, 300);
-
 
 }
 
