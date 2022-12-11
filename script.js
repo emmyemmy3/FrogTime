@@ -2,6 +2,7 @@
 let nakedFrog;
 let frogParty, frogChef, frogHowdy;
 let ribbit;
+let festive;
 
 let hat1 = 0;
 let hat2 = 0;
@@ -47,6 +48,9 @@ function preload() {
 
    // frog noise
   ribbit = loadSound('sounds/frogNoise.mp3');
+
+   // christmas mode
+  festive = loadImage('images/christmasFrog.png');
 }
 
 
@@ -81,8 +85,14 @@ function setup() {
   howdyButton.mousePressed(hatTime3);
 
   lilypadButton = createButton('RIBBIT');
-  lilypadButton.position (200, 200);
+  lilypadButton.position (150, 200);
   lilypadButton.mousePressed(whereLilypad);
+  lilypadButton.size(100, 50);
+
+  christmasMode = createButton('CHRISTMAS MODE');
+  christmasMode.position (150, 300);
+  christmasMode.mousePressed(whereChristmas);
+  christmasMode.size(100, 50);
 
 }
 
@@ -93,7 +103,7 @@ function draw() {
   tint(255, 255);
   textSize(25);
   text("What is his name??", 100, 100);
-  
+
    // display frog
   image(nakedFrog, 475, 250, 446, 300);
 
@@ -114,6 +124,9 @@ function draw() {
 
   tint (255, lilypadTint);
   image(lilypad, 475, 250, 446, 300);
+
+  tint (255, christmasTint);
+  image(festive, 475, 250, 446, 300);
 
 
 }
@@ -155,4 +168,7 @@ function whereLilypad() {
 function whereChristmas() {
   lilypadTint = 0;
   christmasTint = 255;
+  hat1 = 0;
+  hat2 = 0;
+  hat3 = 0;
 }
