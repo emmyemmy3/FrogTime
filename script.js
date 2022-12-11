@@ -3,6 +3,7 @@ let nakedFrog;
 let frogParty, frogChef, frogHowdy;
 let ribbit;
 let festive;
+let sleighBell;
 
 let hat1 = 0;
 let hat2 = 0;
@@ -51,6 +52,9 @@ function preload() {
 
    // christmas mode
   festive = loadImage('images/christmasFrog.png');
+
+   // sleighbell sound
+  sleighBell = loadSound('sounds/sleigh.mp3');
 }
 
 
@@ -143,6 +147,7 @@ function draw() {
   hat1 = 255;
   hat2 = 0;
   hat3 = 0;
+  christmasTint = 0;
  }
 
   // add tint to chef hat frog
@@ -150,6 +155,7 @@ function draw() {
   hat1 = 0;
   hat2 = 255;
   hat3 = 0;
+  christmasTint = 0;
  }
 
   // add tint to cowboy hat frog
@@ -157,6 +163,7 @@ function hatTime3() {
   hat1 = 0;
   hat2 = 0;
   hat3 = 255;
+  christmasTint = 0;
 }
 
 function whereLilypad() {
@@ -171,4 +178,5 @@ function whereChristmas() {
   hat1 = 0;
   hat2 = 0;
   hat3 = 0;
+  sleighBell.play();
 }
