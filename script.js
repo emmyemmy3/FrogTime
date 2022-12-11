@@ -83,7 +83,6 @@ function setup() {
   lilypadButton = createButton('RIBBIT');
   lilypadButton.position (200, 200);
   lilypadButton.mousePressed(whereLilypad);
-  lilypadButton.mousePressed(ribbit.play());
 
 }
 
@@ -94,6 +93,7 @@ function draw() {
   tint(255, 255);
   textSize(25);
   text("What is his name??", 100, 100);
+  
    // display frog
   image(nakedFrog, 475, 250, 446, 300);
 
@@ -114,6 +114,7 @@ function draw() {
 
   tint (255, lilypadTint);
   image(lilypad, 475, 250, 446, 300);
+
 
 }
 
@@ -146,9 +147,9 @@ function hatTime3() {
 }
 
 function whereLilypad() {
- // ribbit.play();
   lilypadTint = 255;
   christmasTint = 0;
+  ribbit.play();
 }
 
 function whereChristmas() {
