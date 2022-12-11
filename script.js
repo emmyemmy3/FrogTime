@@ -7,9 +7,14 @@ let hat2 = 0;
 let hat3 = 0;
 let partyHat, chefHat, cowboyHat;
 
+let lilypadTint = 0;
+let christmasTint = 0;
+
 let partyButton;
 let chefButton;
 let howdyButton;
+let lilypadButton;
+let christmasMode;
 
 let input, greeting, nameButton;
 
@@ -35,6 +40,9 @@ function preload() {
 
    // frog in a cowboy hat
   frogHowdy = loadImage('images/frogHowdy.png');
+
+   // Lilypad environment
+  lilypad = loadImage('images/lilypad.png'); 
 }
 
 
@@ -68,6 +76,10 @@ function setup() {
   howdyButton.position (1169, 635);
   howdyButton.mousePressed(hatTime3);
 
+  lilypadButton = createButton('RIBBIT');
+  lilypadButton.position (200, 200);
+  lilypadButton.mousePressed(whereLilypad);
+
 }
 
 
@@ -94,6 +106,9 @@ function draw() {
 
   tint (255, hat3);
   image(frogHowdy, 475, 250, 446, 300);
+
+  tint (255, lilypadTint);
+  image(lilypad, 475, 250, 446, 300);
 
 }
 
@@ -125,3 +140,12 @@ function hatTime3() {
   hat3 = 255;
 }
 
+function whereLilypad() {
+  lilypadTint = 255;
+  christmasTint = 0;
+}
+
+function whereChristmas() {
+  lilypadTint = 0;
+  christmasTint = 255;
+}
