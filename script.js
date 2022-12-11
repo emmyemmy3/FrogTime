@@ -18,6 +18,7 @@ let chefButton;
 let howdyButton;
 let lilypadButton;
 let christmasMode;
+let reset;
 
 let input, greeting, nameButton;
 
@@ -71,7 +72,7 @@ function setup() {
   nameButton.mousePressed(greet);
 
   greeting = createElement('h2', '');
-  greeting.position(600, 200);
+  greeting.position(570, 200);
 
    // button to equip party hat
   partyButton = createButton('Equip');
@@ -88,15 +89,22 @@ function setup() {
   howdyButton.position (1169, 635);
   howdyButton.mousePressed(hatTime3);
 
+   // button for lilypad and ribbit
   lilypadButton = createButton('RIBBIT');
   lilypadButton.position (150, 200);
   lilypadButton.mousePressed(whereLilypad);
   lilypadButton.size(100, 50);
 
+   // button for christmas mode and sleigh bells
   christmasMode = createButton('CHRISTMAS MODE');
   christmasMode.position (150, 300);
   christmasMode.mousePressed(whereChristmas);
   christmasMode.size(100, 50);
+
+   // button to reset
+  reset = createButton('Reset Outfit');
+  reset.position (170, 635);
+  reset.mousePressed(resetSketch);
 
 }
 
@@ -166,12 +174,14 @@ function hatTime3() {
   christmasTint = 0;
 }
 
+ // lily pad and ribbit
 function whereLilypad() {
   lilypadTint = 255;
   christmasTint = 0;
   ribbit.play();
 }
 
+ // Christmas and sleigh bells
 function whereChristmas() {
   lilypadTint = 0;
   christmasTint = 255;
@@ -179,4 +189,13 @@ function whereChristmas() {
   hat2 = 0;
   hat3 = 0;
   sleighBell.play();
+}
+
+function resetSketch() {
+  lilypadTint = 0;
+  christmasTint = 0;
+  hat1 = 0;
+  hat2 = 0;
+  hat3 = 0;
+  
 }
