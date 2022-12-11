@@ -1,6 +1,7 @@
 
 let nakedFrog;
 let frogParty, frogChef, frogHowdy;
+let ribbit;
 
 let hat1 = 0;
 let hat2 = 0;
@@ -43,6 +44,9 @@ function preload() {
 
    // Lilypad environment
   lilypad = loadImage('images/lilypad.png'); 
+
+   // frog noise
+  ribbit = loadSound('sounds/frogNoise.mp3');
 }
 
 
@@ -79,6 +83,7 @@ function setup() {
   lilypadButton = createButton('RIBBIT');
   lilypadButton.position (200, 200);
   lilypadButton.mousePressed(whereLilypad);
+  lilypadButton.mousePressed(ribbit.play());
 
 }
 
@@ -141,6 +146,7 @@ function hatTime3() {
 }
 
 function whereLilypad() {
+ // ribbit.play();
   lilypadTint = 255;
   christmasTint = 0;
 }
