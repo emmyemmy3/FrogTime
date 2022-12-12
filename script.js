@@ -26,6 +26,9 @@ let reset;
 
 let input, greeting, nameButton;
 
+let portName = '/dev/tty.usbmodem14101';
+let serial;
+
 
 function preload() {
    //original frog
