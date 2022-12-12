@@ -28,6 +28,7 @@ let input, greeting, nameButton;
 
 let portName = '/dev/tty.usbmodem14101';
 let serial;
+let latestData;
 
 
 function preload() {
@@ -72,10 +73,13 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // serial port code copied from P5serial control & Scott Fitzgerald
+  // serial constructor
   serial = new p5.SerialPort();
+  // get a list of all connected serial devices
   serial.list();
-  serial.openPort(portName);  
+  // serial port to use - you'll need to change this
+  serial.open('/dev/tty.usbmodem14101');
+  // callback for when the sketchs connects to the server
   serial.on('connected', serverConnected);
   // callback to print the list of serial devices
   serial.on('list', gotList);
@@ -141,10 +145,6 @@ function setup() {
 
 
 
-function getData(data) {
-  fact = data;
-  console.log(data);
-}
 function serverConnected() {
   console.log("Connected to Server");
 }
@@ -180,7 +180,6 @@ function gotData() {
   console.log(currentString); // print it out
   latestData = currentString; // save it to the global variable
 }
-
 
 
 
