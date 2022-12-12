@@ -78,7 +78,7 @@ function setup() {
   // get a list of all connected serial devices
   serial.list();
   // serial port to use - you'll need to change this
-  serial.open('/dev/tty.usbmodem14101');
+  serial.open(portName);
   // callback for when the sketchs connects to the server
   serial.on('connected', serverConnected);
   // callback to print the list of serial devices
