@@ -6,6 +6,7 @@ let frogParty, frogChef, frogHowdy;
 let ribbit;
 let festive;
 let sleighBell;
+let blink;
 
 let hat1 = 0;
 let hat2 = 0;
@@ -14,6 +15,7 @@ let partyHat, chefHat, cowboyHat;
 
 let lilypadTint = 0;
 let christmasTint = 0;
+let blinkTint = 0;
 
 let partyButton;
 let chefButton;
@@ -58,11 +60,32 @@ function preload() {
 
    // sleighbell sound
   sleighBell = loadSound('sounds/sleigh.mp3');
+
+   // blink eyes
+  blink = loadImage('images/blinkEyes.png');
 }
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  // serial port code copied from P5serial control & Scott Fitzgerald
+  serial = new p5.SerialPort();
+  serial.list();
+  serial.openPort(portName);  
+  serial.on('connected', serverConnected);
+  // callback to print the list of serial devices
+  serial.on('list', gotList);
+  // what to do when we get serial data
+  serial.on('data', gotData);
+  // what to do when there's an error
+  serial.on('error', gotError);
+  // when to do when the serial port opens
+  serial.on('open', gotOpen);
+  // what to do when the port closes
+  serial.on('close', gotClose);
+
+
 
    //input for frog name
   input = createInput();
@@ -111,6 +134,57 @@ function setup() {
 }
 
 
+
+
+
+
+function getData(data) {
+  fact = data;
+  console.log(data);
+}
+function serverConnected() {
+  console.log("Connected to Server");
+}
+
+// list the ports
+function gotList(thelist) {
+  console.log("List of Serial Ports:");
+
+  for (let i = 0; i < thelist.length; i++) {
+    console.log(i + " " + thelist[i]);
+  }
+}
+
+function gotOpen() {
+  console.log("Serial Port is Open");
+}
+
+function gotClose() {
+  console.log("Serial Port is Closed");
+  latestData = "Serial Port is Closed";
+}
+
+function gotError(theerror) {
+  console.log(theerror);
+}
+
+// when data is received in the serial buffer
+
+function gotData() {
+  let currentString = serial.readLine(); // store the data in a variable
+  trim(currentString); // get rid of whitespace
+  if (!currentString) return; // if there's nothing in there, ignore it
+  console.log(currentString); // print it out
+  latestData = currentString; // save it to the global variable
+}
+
+
+
+
+
+
+
+
 function draw() {
   background(220, 208, 255);
 
@@ -141,6 +215,15 @@ function draw() {
 
   tint (255, christmasTint);
   image(festive, 475, 250, 446, 300);
+
+  if (latestData > 0) {
+    blinkTint = 255;
+
+  } else { 
+    blinkTint = 0;
+  }
+  tint (255, blinkTint);
+  image(blink, 475, 250, 446, 300);
 
 }
 
